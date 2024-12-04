@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Slider</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    img {
+      max-width: 70%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    input[type="range"] {
+      width: 80%;
+    }
+    .slider-label {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Image display area -->
+  <img id="imageDisplay" src="quantiles_1.png" alt="Slide Image">
+  <!-- Slider to control image display -->
+  <input type="range" id="imageSlider" min="0" max="29" value="0">
+  <div class="slider-label" id="sliderLabel">Alpha</div>
+
+  <script>
+    // Array of image filenames corresponding to alpha values
+    const images = [
+      "quantiles_1.png", "quantiles_2.png", "quantiles_3.png",
+      "quantiles_4.png", "quantiles_5.png", "quantiles_6.png", "quantiles_7.png",
+      "quantiles_8.png", "quantiles_9.png", "quantiles_10.png", "quantiles_11.png",
+      "quantiles_12.png", "quantiles_13.png", "quantiles_14.png", "quantiles_15.png",
+      "quantiles_16.png", "quantiles_17.png", "quantiles_18.png", "quantiles_19.png",
+      "quantiles_20.png", "quantiles_21.png", "quantiles_22.png", "quantiles_23.png",
+      "quantiles_24.png", "quantiles_25.png", "quantiles_26.png", "quantiles_27.png",
+      "quantiles_28.png", "quantiles_29.png", "quantiles_30.png"
+    ];
+
+    // Array of alpha values from 0.5 to 2 with 30 steps
+    const alphas = Array.from({ length: 30 }, (_, i) => (0.5 + i * 0.05).toFixed(2));
+
+    // Elements
+    const imageDisplay = document.getElementById("imageDisplay");
+    const imageSlider = document.getElementById("imageSlider");
+    const sliderLabel = document.getElementById("sliderLabel");
+
+    // Update image and label based on slider value
+    function updateImage() {
+      const index = imageSlider.value;
+      imageDisplay.src = images[index];
+    }
+
+    // Event listener for slider
+    imageSlider.addEventListener("input", updateImage);
+  </script>
+</body>
+</html>
